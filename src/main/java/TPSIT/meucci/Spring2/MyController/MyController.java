@@ -30,6 +30,15 @@ public class MyController {
             return personaRepository.findByName(name);
         }else{
             return personaRepository.findAll();
+        }   
+    }
+
+    @GetMapping("/listByName")
+    public List<Persona> listName(@RequestParam(name="name", required = false)String name) {
+        if (name!=null && name.trim().length()>0) {
+            return personaRepository.findByNameContains(name);
+        }else{
+            return personaRepository.findAll();
         }
         
     }
